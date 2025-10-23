@@ -5,7 +5,6 @@ export interface Sector {
 }
 
 export const sectors: Sector[] = [
-  { label: 'Transport', value: 'transport', icon: 'bike_scooter' },
   { label: 'Agriculture', value: 'agriculture', icon: 'agriculture' },
   { label: 'Forestry', value: 'forestry', icon: 'forest' },
   { label: 'Overall', value: 'overall', icon: 'dashboard' },

@@ -175,8 +175,6 @@ export const useLeverStore = defineStore('lever', () => {
     });
   };
 
-
-  const transport = computed(() => getSectorDataWithKpis('transport'));
   const forestry = computed(() => getSectorDataWithKpis('forestry'));
   const agriculture = computed(() => getSectorDataWithKpis('agriculture'));
 
@@ -394,7 +392,6 @@ export const useLeverStore = defineStore('lever', () => {
     getLeversForSector,
     isCustomPathway,
 
-    transport,
     forestry,
     agriculture,
     getSectorDataWithKpis,

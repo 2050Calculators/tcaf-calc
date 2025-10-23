@@ -19,24 +19,6 @@ export interface Lever {
 
 export const sectors = [
   {
-    code: 'Transport',
-    levers: [
-      'lever_pkm',
-      'lever_passenger_aviation-pkm',
-      'lever_passenger_modal-share',
-      'lever_passenger_occupancy',
-      'lever_passenger_utilization-rate',
-      'lever_fuel-mix',
-      'lever_passenger_technology-share_new',
-      'lever_passenger_veh-efficiency_new',
-      'lever_freight_modal-share',
-      'lever_freight_technology-share_new',
-      'lever_freight_tkm',
-      'lever_freight_utilization-rate',
-      'lever_freight_vehicle-efficiency_new',
-    ],
-  },
-  {
     code: 'Behaviours',
     levers: [
       'lever_kcal-req',
