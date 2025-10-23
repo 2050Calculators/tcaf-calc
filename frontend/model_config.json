@@ -1,4 +1,4 @@
 {
-  "MODEL_PRIMARY_REGION": "Vaud",
-  "AVAILABLE_REGIONS": ["Vaud", "Switzerland", "EU27"]
+  "MODEL_PRIMARY_REGION": "Switzerland",
+  "AVAILABLE_REGIONS": ["Switzerland"]
 }
