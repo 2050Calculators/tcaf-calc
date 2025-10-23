@@ -19,19 +19,6 @@ export interface Lever {
 
 export const sectors = [
   {
-    code: 'Buildings',
-    levers: [
-      'lever_heatcool-behaviour',
-      'lever_floor-intensity',
-      'lever_building-renovation-rate',
-      'lever_heating-technology-fuel',
-      'lever_heating-efficiency',
-      'lever_appliance-own',
-      'lever_appliance-use',
-      'lever_appliance-efficiency',
-    ],
-  },
-  {
     code: 'Transport',
     levers: [
       'lever_pkm',

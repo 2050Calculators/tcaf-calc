@@ -32,7 +32,7 @@ const { mini } = defineProps<{
 }>();
 
 // Reactive sector selection
-const currentSector = ref(route.path.split('/')[1] || 'buildings');
+const currentSector = ref(route.path.split('/')[1] || 'agriculture');
 
 // Watch for sector changes and update route
 watch(currentSector, (newSector) => {

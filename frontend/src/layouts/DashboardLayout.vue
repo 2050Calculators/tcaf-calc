@@ -96,7 +96,7 @@ const sectorSelectorOpen = ref($q.screen.gt.sm); // Start open on desktop, close
 const miniState = ref(false);
 
 // Get current sector from the SectorSelector component
-const currentSector = computed(() => sectorSelector.value?.currentSector || 'buildings');
+const currentSector = computed(() => sectorSelector.value?.currentSector || 'agriculture');
 
 // Get current sector display name
 const currentSectorDisplay = computed(() => {

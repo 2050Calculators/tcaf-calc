@@ -74,7 +74,6 @@ export interface ModelResults {
     climate: SectorData;
     lifestyles: SectorData;
     transport: SectorData;
-    buildings: SectorData;
     forestry: SectorData;
     agriculture: SectorData;
   };
@@ -82,7 +81,6 @@ export interface ModelResults {
     climate: KpiData[];
     lifestyles: KpiData[];
     transport: KpiData[];
-    buildings: KpiData[];
     forestry: KpiData[];
     agriculture: KpiData[];
   };
@@ -177,7 +175,7 @@ export const useLeverStore = defineStore('lever', () => {
     });
   };
 
-  const buildings = computed(() => getSectorDataWithKpis('buildings'));
+
   const transport = computed(() => getSectorDataWithKpis('transport'));
   const forestry = computed(() => getSectorDataWithKpis('forestry'));
   const agriculture = computed(() => getSectorDataWithKpis('agriculture'));
@@ -396,7 +394,6 @@ export const useLeverStore = defineStore('lever', () => {
     getLeversForSector,
     isCustomPathway,
 
-    buildings,
     transport,
     forestry,
     agriculture,
