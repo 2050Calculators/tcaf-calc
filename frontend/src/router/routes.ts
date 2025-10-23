@@ -7,11 +7,6 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', redirect: '/agriculture' }, // Redirect to default sector
       {
-        path: 'forestry/:subtab?',
-        name: 'forestry',
-        component: () => import('pages/ForestryTab.vue'),
-      },
-      {
         path: 'agriculture/:subtab?',
         name: 'agriculture',
         component: () => import('pages/AgricultureTab.vue'),

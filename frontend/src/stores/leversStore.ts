@@ -175,7 +175,6 @@ export const useLeverStore = defineStore('lever', () => {
     });
   };
 
-  const forestry = computed(() => getSectorDataWithKpis('forestry'));
   const agriculture = computed(() => getSectorDataWithKpis('agriculture'));
 
   // Model operations
@@ -392,7 +391,6 @@ export const useLeverStore = defineStore('lever', () => {
     getLeversForSector,
     isCustomPathway,
 
-    forestry,
     agriculture,
     getSectorDataWithKpis,
 

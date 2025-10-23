@@ -6,8 +6,8 @@ export interface Sector {
 
 export const sectors: Sector[] = [
   { label: 'Agriculture', value: 'agriculture', icon: 'agriculture' },
-  { label: 'Forestry', value: 'forestry', icon: 'forest' },
   { label: 'Overall', value: 'overall', icon: 'dashboard' },
+  // { label: 'Forestry', value: 'forestry', icon: 'forest' },
   // Theses ones are examples of sectors that can be added later
   // Icons can be found in Material Icons or similar icon libraries like :
   //   https://fonts.google.com/icons?icon.set=Material+Icons
