@@ -72,14 +72,14 @@ export interface ModelResults {
   sectors: string[];
   data: {
     climate: SectorData;
-    lifestyles: SectorData;
+    population: SectorData;
     transport: SectorData;
     forestry: SectorData;
     agriculture: SectorData;
   };
   kpis: {
     climate: KpiData[];
-    lifestyles: KpiData[];
+    population: KpiData[];
     transport: KpiData[];
     forestry: KpiData[];
     agriculture: KpiData[];
