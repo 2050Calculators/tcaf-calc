@@ -6,6 +6,8 @@ export interface Sector {
 
 export const sectors: Sector[] = [
   { label: 'Agriculture', value: 'agriculture', icon: 'agriculture' },
+  { label: 'Dietary Habits', value: 'agriculture', icon: 'agriculture' },
+  { label: 'True Cost', value: 'agriculture', icon: 'agriculture' },
   { label: 'Overall', value: 'overall', icon: 'dashboard' },
   // { label: 'Forestry', value: 'forestry', icon: 'forest' },
   // Theses ones are examples of sectors that can be added later
