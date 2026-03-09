@@ -3175,6 +3175,15 @@ def manure_fxa(list_countries_calc, df_liv_emissions, df_manure_n_fxa, df_manure
 
    return dm_fxa_CH4, dm_fxa_N2O
 
+# CalculationLeaf FXA - EDIBLE WEIGHT/ 1 kg of LIVE WEIGHT
+
+def fxa_ratio_weight():
+
+
+
+  return
+
+
 # CalculationLeaf CAL - FEED DEMAND ----------------------------------------------------------------------------------
 
 def feed_calibration(list_countries_calc):
@@ -3848,6 +3857,7 @@ dm_cal_liv_emissions, df_liv_emissions = manure_calibration(list_countries_calc,
 dm_fxa_CH4, dm_fxa_N2O = manure_fxa(list_countries_calc, df_liv_emissions, df_manure_n_fxa, df_manure_ch4_fxa)
 dm_fxa_exports = exports_processing(list_countries_calc,file_dict)
 dm_feed_alt_protein = livestock_protein_meals_processing(df_csl_feed)
+fxa_ratio_weight()
 dm_fts = fts_processing()
 
 # Match countries for imports
