@@ -283,7 +283,7 @@ def aggregate_by_year(df, value_col):
 # MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main():
+def dressing_ratio():
     # --- Parse TCF PDF ---
     df_tcf = parse_tcf_pdf(FILES["tcf_pdf"])
 
@@ -419,6 +419,3 @@ def main():
 
     return df
 
-
-if __name__ == "__main__":
-    main()
