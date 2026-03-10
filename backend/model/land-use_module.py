@@ -333,7 +333,8 @@ def crop(lever_setting, years_setting, DM_input, write_pickle, interface=Interfa
 
     # land-use to TCAF
     DM_landuse_to_TCAF = {'cropland-world': dm_crop_imports.filter({'Variables': ['agr_cropland_total']}),
-                          'cropland-ch': DM_cropland['crop-share'].filter({'Variables': ['agr_cropland']})}
+                          'cropland-ch': DM_cropland['crop-share'].filter({'Variables': ['agr_cropland']}),
+                          'prod-ch': DM_cropland['crop-share'].filter({'Variables': ['agr_domestic-production_afw']})}
     if write_pickle is True:
       current_file_directory = os.path.dirname(os.path.abspath(__file__))
       f = os.path.join(current_file_directory,

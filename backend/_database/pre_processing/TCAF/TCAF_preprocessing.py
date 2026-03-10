@@ -647,6 +647,36 @@ def TCAF_lca_preprocessing():
 
   return DM_TCAF_lca
 
+# CalculationLeaf CONSTANTS
+
+def constant():
+
+  # KCAL TO T ----------------------------------------------------------------------------------------
+
+  # Read excel
+  df_kcal_t = pd.read_excel('../dietary-habits/data/dietary-habits_constants.xlsx',
+                            sheet_name='cp_kcal_t')
+
+  # Filter columns
+  df_kcal_t = df_kcal_t[['variables', 'kcal per t']].copy()
+
+  # Turn the df in a dict
+  dict_kcal_t = dict(zip(df_kcal_t['variables'], df_kcal_t['kcal per t']))
+  categories1 = df_kcal_t['variables'].tolist()
+
+  # Format as a cdm
+  cdm_kcal = ConstantDataMatrix(col_labels={'Variables': ['cp_kcal-per-t'],
+                                            'Categories1': categories1})
+  arr = np.zeros((len(cdm_kcal.col_labels['Variables']),
+                  len(cdm_kcal.col_labels['Categories1'])))
+  cdm_kcal.array = arr
+  idx = cdm_kcal.idx
+  for cat, val in dict_kcal_t.items():
+    cdm_kcal.array[idx['cp_kcal-per-t'], idx[cat]] = val
+  cdm_kcal.units["cp_kcal-per-t"] = "kcal/t"
+
+  return cdm_kcal
+
 # CalculationLeaf CREATE PICKLE
 def database_from_csv_to_datamatrix(years_ots, years_fts):
 
@@ -719,7 +749,8 @@ def database_from_csv_to_datamatrix(years_ots, years_fts):
 
   # ConstantsToDatamatrix ------------------------------------------------------
   dict_const = {}
-  dict_const = CDM_MF
+  dict_const = { 'monetization-factors': CDM_MF,
+                 'cdm_kcal': cdm_kcal}
 
   # Group all datamatrix in a single structure ---------------------------------
   DM_TCAF = {
@@ -745,6 +776,7 @@ DM_TCAF_health_diet, dm_health_dalys = TCAF_health_diet_preprocessing()
 DM_TCAF_biodiversity = TCAF_biodiversity_preprocessing()
 DM_TCAF_lca = TCAF_lca_preprocessing()
 CDM_MF = TCAF_MF_preprocessing()
+cdm_kcal = constant()
 
 
 # CalculationTree RUNNING PICKLE CREATION --------------------------------------
