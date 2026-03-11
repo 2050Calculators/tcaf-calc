@@ -194,24 +194,24 @@ def crop_yield(dm_prod_share):
 
   # Step CH: Yield evolution_o/i & _e/i (organic/extensive with respect to intensive) [-]
   # fixme Source: find correct source
-  yield_evolution_o = {'cereal': 1.0,
-                      'sugarcrop': 1.0,
-                      'oilcrop': 1.0,
-                      'veg': 1.0,
-                      'fruit': 1.0,
-                      'starch': 1.0,
-                      'pulse': 1.0}
-  yield_evolution_e = {'cereal': 1.0,
-                      'sugarcrop': 1.0,
-                      'oilcrop': 1.0,
-                      'veg': 1.0,
-                      'fruit': 1.0,
-                      'starch': 1.0,
-                      'pulse': 1.0}
+  yield_evolution_o = {'crop-cereal': 1.0,
+                      'crop-sugarcrop': 1.0,
+                      'crop-oilcrop': 1.0,
+                      'crop-veg': 1.0,
+                      'crop-fruit': 1.0,
+                      'crop-starch': 1.0,
+                      'crop-pulse': 1.0}
+  yield_evolution_e = {'crop-cereal': 1.0,
+                      'crop-sugarcrop': 1.0,
+                      'crop-oilcrop': 1.0,
+                      'crop-veg': 1.0,
+                      'crop-fruit': 1.0,
+                      'crop-starch': 1.0,
+                      'crop-pulse': 1.0}
 
   # Format
   dm_yield_ch = dm_yield.filter({'Country':['Switzerland']})
-  dm_yield_ch.drop(dim='Categories1', col_label='rice')
+  dm_yield_ch.drop(dim='Categories1', col_label='crop-rice')
 
   # Intensive yield_i [kcal/ha] = yield_T / [share_i + evol_o*share_o + evol_e*share_e]
   dm_yield_ch.rename_col('agr_crop_yield',
@@ -388,22 +388,22 @@ def production_share():
                             'Categories2')
 
     cat_map = {
-      "cereal": ["Blé", "Orge", "Avoine", "Seigle", "Triticale",
+      "crop-cereal": ["Blé", "Orge", "Avoine", "Seigle", "Triticale",
                       "Epeautre", "Méteil et autres céréales panifiables", "Maïs grain",
                       'Autres céréales', "Maïs d'ensilage et maïs vert", "Houblon", "Céréales en général"],
-      "fruit": ["Baies annuelles", "Cultures de baies sous abri",
+      "crop-fruit": ["Baies annuelles", "Cultures de baies sous abri",
                      'Cultures fruitières en général', 'Pommes',
                      'Poires', 'Fruits à noyaux', 'Baies pluriannuelles', 'Vigne'],
-      "oilcrop": ["Colza pour matière première renouvelable",
+      "crop-oilcrop": ["Colza pour matière première renouvelable",
                        "Tournesol pour matière première renouvelable",
                        "Lin", "Chanvre", 'Colza pour huile comestible',
                        'Tournesol pour huile comestible',
                        'Courge à huile'],
-      "pulse": ['Pois protéagineux', 'Féveroles',
+      "crop-pulse": ['Pois protéagineux', 'Féveroles',
                      'Légumineuses en général', 'Lupin fourrager', "Soja"],
-      "starch": ["Pommes de terre"],
-      "sugarcrop": ["Betteraves sucrières","Betteraves fourragères"],
-      "veg": ["Cultures maraîchères de plein champ",
+      "crop-starch": ["Pommes de terre"],
+      "crop-sugarcrop": ["Betteraves sucrières","Betteraves fourragères"],
+      "crop-veg": ["Cultures maraîchères de plein champ",
                    "Cultures maraîchères sous abri", "Asperges",
                    "Rhubarbe"],
       "remove": ["Plantes aromatiques et médicinales annuelles",

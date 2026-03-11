@@ -144,16 +144,16 @@ def alcoholic_beverages_workflow(DM_alc_bev, CDM_const, dm_lfs, years_setting):
     # Cereals domestic production for beverages = cereals for beer + cereals for bev fer
     dm_bev_dom_prod.operation('agr_ibp_bev_beer_crop_cereal', '+',
                               'agr_ibp_bev_bev-fer_crop_cereal',
-                              out_col='agr_domestic-production_bev_raw_cereal', unit='kcal')
+                              out_col='agr_domestic-production_bev_raw_crop-cereal', unit='kcal')
 
     # Fruit domestic production for beverages = fruits for bev-alc + fruits for wine
     dm_bev_dom_prod.operation('agr_ibp_bev_bev-alc_crop_fruit', '+',
                               'agr_ibp_bev_wine_crop_fruit',
-                              out_col='agr_domestic-production_bev_raw_fruit', unit='kcal')
+                              out_col='agr_domestic-production_bev_raw_crop-fruit', unit='kcal')
 
     # Filter and deepen
-    dm_bev_dom_prod = dm_bev_dom_prod.filter({'Variables': ['agr_domestic-production_bev_raw_cereal',
-                                                            'agr_domestic-production_bev_raw_fruit']})
+    dm_bev_dom_prod = dm_bev_dom_prod.filter({'Variables': ['agr_domestic-production_bev_raw_crop-cereal',
+                                                            'agr_domestic-production_bev_raw_crop-fruit']})
     dm_bev_dom_prod.deepen()
 
     # (CH only) CALIBRATION CROP PRODUCTION BEVERAGES (raw) --------------------------------------------------------------------------------------

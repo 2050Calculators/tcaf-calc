@@ -107,21 +107,21 @@ def simulate_livestock_to_TCAF_input():
 # CalculationLeaf TCAF LCA
 def TCAF_lca_workflow(DM_TCAF_lca, DM_crop_to_TCAF, DM_landuse_to_TCAF, DM_livestock_to_TCAF, CDM_const):
 
-  # Match countries
+  # Match countries FIXME better match countries
   DM_livestock_to_TCAF['meat-world'].drop(col_label=['Switzerland', 'Tokelau'], dim='Country')
   DM_livestock_to_TCAF['asf-world'].drop(col_label=['Switzerland', 'Tokelau'],
                                           dim='Country')
   DM_crop_to_TCAF.drop(col_label=['Switzerland'],
                                           dim='Country')
-  #dm_match_countries(DM_crop_to_TCAF, DM_livestock_to_TCAF['asf-world'],
-  #                   parameter='perfect match')
-  #dm_match_countries(DM_livestock_to_TCAF['meat-world'], DM_livestock_to_TCAF['asf-world'], parameter='perfect match')
-
-
+  dm_match_countries(DM_crop_to_TCAF, DM_TCAF_lca['lca-world'],parameter='perfect match')
+  dm_match_countries(DM_livestock_to_TCAF['asf-world'], DM_TCAF_lca['lca-world'],
+                     parameter='perfect match')
+  dm_match_countries(DM_livestock_to_TCAF['meat-world'], DM_TCAF_lca['lca-world'],
+                     parameter='perfect match')
 
   # (Switzerland & World) Crop - Unit convertion: [kcal] to [kg]
   cdm_kcal = CDM_const['cdm_kcal'].copy()
-  cdm_kcal.rename_col_regex(str1="crop-", str2="", dim="Categories1")
+  #cdm_kcal.rename_col_regex(str1="crop-", str2="", dim="Categories1")
   cat = DM_crop_to_TCAF.col_labels['Categories1']
   cdm_kcal = cdm_kcal.filter({'Categories1': cat})
   # Sort
@@ -142,9 +142,9 @@ def TCAF_lca_workflow(DM_TCAF_lca, DM_crop_to_TCAF, DM_landuse_to_TCAF, DM_lives
                             unit='kg')
 
   # FIXME cereals = cereals + rice
-  DM_landuse_to_TCAF['prod-ch'].groupby({'cereal': 'cereal|rice'}, dim='Categories2',
+  DM_landuse_to_TCAF['prod-ch'].groupby({'crop-cereal': 'crop-cereal|crop-rice'}, dim='Categories2',
                       inplace=True, regex=True)
-  DM_crop_to_TCAF.groupby({'cereal': 'cereal|rice'}, dim='Categories1',
+  DM_crop_to_TCAF.groupby({'crop-cereal': 'crop-cereal|crop-rice'}, dim='Categories1',
                       inplace=True, regex=True)
 
   # FIXME drop extensive for crops CH for now
@@ -183,7 +183,13 @@ def TCAF_lca_workflow(DM_TCAF_lca, DM_crop_to_TCAF, DM_landuse_to_TCAF, DM_lives
                       dim='Categories1')
 
 
-  # Multiply with LCA impacts
+  # Multiply with Monetized LCA impacts
+  food_cat = dm_lca_world.col_labels['Categories1']
+  DM_TCAF_lca['lca-world'].filter({'Categories1': food_cat}, inplace=True)
+  array_temp = dm_lca_world[:, :,'agr_production-lca', :, np.newaxis] \
+               * DM_TCAF_lca['lca-world'][:,:,'lca-impacts',:,:]
+  DM_TCAF_lca['lca-world'].add(array_temp, dim='Variables', col_label='agr_production-tcaf',
+                            unit='CHF')
 
   # Multiply with Monetization Factors (MF)
 
@@ -198,6 +204,10 @@ def TCAF_lca_workflow(DM_TCAF_lca, DM_crop_to_TCAF, DM_landuse_to_TCAF, DM_lives
   DM_landuse_to_TCAF['prod-ch'].switch_categories_order(cat1="Categories2", cat2="Categories1")
   dm_lca_ch.append(DM_landuse_to_TCAF['prod-ch'].filter({'Variables': ['agr_production-lca']}),
                       dim='Categories1')
+
+  # Multiply with LCA impacts
+
+  # Multiply with Monetization Factors (MF)
 
 
   return DM_TCAF_lca

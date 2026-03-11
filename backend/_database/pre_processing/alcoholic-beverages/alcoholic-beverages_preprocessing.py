@@ -225,9 +225,9 @@ def bev_calibration(list_countries_calc, dm_fxa_pro_yield, cdm_bev):
 
     # Sum crops for beverages with crops for food/feed
     # Groupby fruits or cereals
-    dm_cal_dom_prod_bev.groupby({'cereal': 'bev-fer|bev-beer'}, dim='Categories1', regex=True,
+    dm_cal_dom_prod_bev.groupby({'crop-cereal': 'bev-fer|bev-beer'}, dim='Categories1', regex=True,
                              inplace=True)
-    dm_cal_dom_prod_bev.groupby({'fruit': 'bev-alc|wine'}, dim='Categories1', regex=True,
+    dm_cal_dom_prod_bev.groupby({'crop-fruit': 'bev-alc|wine'}, dim='Categories1', regex=True,
                               inplace=True)
 
     return dm_cal_dom_prod_bev

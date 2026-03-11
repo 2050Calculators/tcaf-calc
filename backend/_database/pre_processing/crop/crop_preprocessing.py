@@ -565,21 +565,21 @@ def crop_calibration(list_countries_calc, dm_losses, dm_fxa_pro_yield, cdm_bev):
 
     # Sum crops for beverages with crops for food/feed
     # Groupby fruits or cereals
-    dm_cal_dom_prod_bev.groupby({'cereal': 'bev-fer|bev-beer'}, dim='Categories1', regex=True,
+    dm_cal_dom_prod_bev.groupby({'crop-cereal': 'bev-fer|bev-beer'}, dim='Categories1', regex=True,
                              inplace=True)
-    dm_cal_dom_prod_bev.groupby({'fruit': 'bev-alc|wine'}, dim='Categories1', regex=True,
+    dm_cal_dom_prod_bev.groupby({'crop-fruit': 'bev-alc|wine'}, dim='Categories1', regex=True,
                               inplace=True)
     # cal_crop total = cal_crop_food (actually also includes feed) + cal_crop_bev
     array_temp_cereal = dm_cal_dom_prod_bev[:, :,
-                        'cal_agr_domestic-production_bev', 'cereal'] \
+                        'cal_agr_domestic-production_bev', 'crop-cereal'] \
                         + dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production',
-                          'cereal']
-    dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production','cereal'] = array_temp_cereal
+                          'crop-cereal']
+    dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production','crop-cereal'] = array_temp_cereal
     array_temp_fruit = dm_cal_dom_prod_bev[:, :, 'cal_agr_domestic-production_bev',
-                       'fruit'] \
+                       'crop-fruit'] \
                        + dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production',
-                         'fruit']
-    dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production', 'fruit'] = array_temp_fruit
+                         'crop-fruit']
+    dm_cal_dom_prod_crop[:, :, 'cal_agr_domestic-production', 'crop-fruit'] = array_temp_fruit
 
     return dm_cal_dom_prod_crop, dm_cal_dom_prod_bev
 
